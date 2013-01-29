@@ -1,12 +1,10 @@
 development:
   sessions:
     default:
-      database: bt_dev
-      hosts:
-        - localhost:27017
+      uri: <%= ENV['MONGOLAB_URI'] %>
       options:
         safe: true
-        consistency: :strong
+        skip_version_check: true
   options:
     allow_dynamic_fields: false
     identity_map_enabled: true
@@ -28,15 +26,12 @@ test:
 production:
   sessions:
     default:
-      database: <%= ENV['MONGO_DB_NAME'] %>
-      hosts:
-        - <%= ENV['MONGO_HOST_AND_PORT'] %>
-      username: <%= ENV['MONGO_USERNAME'] %>
-      password: <%= ENV['MONGO_PASSWORD'] %>
+      uri: <%= ENV['MONGOLAB_URI'] %>
       options:
+        skip_version_check: true
         safe: true
-        consistency: :strong
   options:
     allow_dynamic_fields: false
     identity_map_enabled: true
+    protect_sensitive_fields: true
     raise_not_found_error: true
