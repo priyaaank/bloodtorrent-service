@@ -24,5 +24,13 @@ get '/donation/new' do
 end
 
 get '/donation/search' do
+  blood_group = params[:blood_group]
+  latitude = params[:latitude]
+  longitude = params[:longitude]
+  radius = params[:radius]
 
+  requests = DonationRequest.where(:blood_group => blood_group)
+
+  content_type :json
+  requests.to_json
 end
