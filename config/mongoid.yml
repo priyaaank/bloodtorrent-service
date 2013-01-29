@@ -1,0 +1,6 @@
+development:
+  sessions:
+    default:
+      database: bloodtorrent
+      hosts:
+        - localhost:27017
