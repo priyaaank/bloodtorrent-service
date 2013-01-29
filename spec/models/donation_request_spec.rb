@@ -9,4 +9,5 @@ describe DonationRequest do
   it { should respond_to :requestor       }
   it { should respond_to :contact_details }
 
+  
 end
