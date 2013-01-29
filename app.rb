@@ -34,3 +34,7 @@ get '/donation/search' do
   content_type :json
   requests.to_json
 end
+
+get '/' do
+  "Dragons be here"
+end
