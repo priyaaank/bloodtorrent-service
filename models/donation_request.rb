@@ -13,7 +13,7 @@ class DonationRequest
   include Mongoid::Document
 
   field :blood_group,   :type => String
-  field :quantity, :type => Float
+  field :quantity, :type => Integer
   field :latitude, :type => Float
   field :longitude, :type => Float
   field :requestor, :type => String
@@ -24,10 +24,15 @@ class DonationRequest
   def valid?
     reset_error_messages
     add_error("Incorrect or missing blood group") unless valid_blood_group?
+    add_error("Incorrect or missing quantity") unless valid_quantity?
     @error_messages.empty?
   end
 
   private
+
+  def valid_quantity?
+    !quantity.nil? && quantity.is_a?(Integer) && quantity > 0
+  end
 
   def valid_blood_group?
     !blood_group.nil? && BLOOD_GROUPS::ALL.include?(blood_group)

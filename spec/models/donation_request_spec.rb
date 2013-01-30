@@ -14,15 +14,14 @@ describe DonationRequest do
   context "for validation" do
 
     let(:valid_donation_request) { DonationRequest.new( :blood_group => "bpositive",
-                                                       :quantity => 1000,
-                                                       :latitude => 18.5236,
-                                                       :longitude => 73.8478,
-                                                       :requestor => "Jonny",
-                                                       :contact_details => "9923299222") }
+                                                        :quantity => 1000,
+                                                        :latitude => 18.5236,
+                                                        :longitude => 73.8478,
+                                                        :requestor => "Jonny",
+                                                        :contact_details => "9923299222") }
     context "to be successful" do
 
-
-      it "should have a valid blood group" do
+      it "should have a valid attributes" do
         valid_donation_request.should be_valid
       end
 
@@ -36,6 +35,14 @@ describe DonationRequest do
 
         donation_request_with_incorrect_blood_group.should_not be_valid
         donation_request_with_incorrect_blood_group.error_messages.should include("Incorrect or missing blood group")
+      end
+
+      it "should have a valid quantity" do
+        donation_request_with_incorrect_quantity = valid_donation_request
+        donation_request_with_incorrect_quantity.quantity = 0
+
+        donation_request_with_incorrect_quantity.should_not be_valid
+        donation_request_with_incorrect_quantity.error_messages.should include("Incorrect or missing quantity")
       end
 
     end
