@@ -1,14 +1,15 @@
 development:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+      database: bt_dev
+      hosts:
+        - localhost:27017
       options:
         safe: true
-        skip_version_check: true
+        consistency: :strong
   options:
     allow_dynamic_fields: false
     identity_map_enabled: true
-    protect_sensitive_fields: true
     raise_not_found_error: true
 test:
   sessions:
