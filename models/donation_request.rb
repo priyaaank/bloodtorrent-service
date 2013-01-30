@@ -10,6 +10,11 @@ class DonationRequest
     ALL = [O_POSITIVE, O_NEGATIVE, A_POSITIVE, A_NEGATIVE, B_POSITIVE, B_NEGATIVE]
   end
 
+  MAX_LATITUDE_VALUE = 90
+  MIN_LATITUDE_VALUE = -90
+  MAX_LONGITUDE_VALUE = 180
+  MIN_LONGITUDE_VALUE = -180
+
   include Mongoid::Document
 
   field :blood_group,   :type => String
@@ -25,6 +30,10 @@ class DonationRequest
     reset_error_messages
     add_error("Incorrect or missing blood group") unless valid_blood_group?
     add_error("Incorrect or missing quantity") unless valid_quantity?
+    add_error("Incorrect or missing latitude") unless valid_latitude?
+    add_error("Incorrect or missing longitude") unless valid_longitude?
+    add_error("Incorrect or missing requestor") unless valid_requestor?
+    add_error("Incorrect or missing contact details") unless valid_contact_details?
     @error_messages.empty?
   end
 
@@ -36,6 +45,24 @@ class DonationRequest
 
   def valid_blood_group?
     !blood_group.nil? && BLOOD_GROUPS::ALL.include?(blood_group)
+  end
+
+  def valid_latitude?
+    !latitude.nil? && latitude.is_a?(Float) && 
+      latitude >= MIN_LATITUDE_VALUE && latitude <= MAX_LATITUDE_VALUE
+  end
+
+  def valid_longitude?
+    !longitude.nil? && longitude.is_a?(Float) && 
+      longitude >= MIN_LONGITUDE_VALUE && longitude <= MAX_LONGITUDE_VALUE
+  end
+
+  def valid_requestor?
+    !requestor.nil? && requestor.is_a?(String)
+  end
+
+  def valid_contact_details?
+    !contact_details.nil? && contact_details.is_a?(String)
   end
 
   def reset_error_messages
