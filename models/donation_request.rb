@@ -7,7 +7,9 @@ class DonationRequest
     A_NEGATIVE = "anegative"
     B_POSITIVE = "bpositive"
     B_NEGATIVE = "bnegative"
-    ALL = [O_POSITIVE, O_NEGATIVE, A_POSITIVE, A_NEGATIVE, B_POSITIVE, B_NEGATIVE]
+    AB_POSITIVE = "abpositive"
+    AB_NEGATIVE = "abnegative"
+    ALL = [O_POSITIVE, O_NEGATIVE, A_POSITIVE, A_NEGATIVE, B_POSITIVE, B_NEGATIVE, AB_POSITIVE, AB_NEGATIVE]
   end
 
   MAX_LATITUDE_VALUE = 90

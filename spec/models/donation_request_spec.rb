@@ -10,6 +10,20 @@ describe DonationRequest do
     it { should respond_to :contact_details }
   end
 
+  context "blood groups" do
+    
+    it "should be of 8 types" do
+      DonationRequest::BLOOD_GROUPS::ALL.size.should be 8
+    end
+
+    it "should have 8 defined types" do
+      ["apositive","bpositive","opositive", "abpositive", "anegative", "bnegative", "abnegative", "onegative"].each do |blood_group|
+        DonationRequest::BLOOD_GROUPS::ALL.should include(blood_group)
+      end
+    end
+
+  end
+
   context "validation" do
 
     let(:valid_donation_request) { DonationRequest.new( :blood_group => "bpositive",
