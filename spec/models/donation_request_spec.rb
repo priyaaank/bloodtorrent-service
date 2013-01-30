@@ -5,8 +5,7 @@ describe DonationRequest do
   context "attributes" do
     it { should respond_to :blood_group     }
     it { should respond_to :quantity        }
-    it { should respond_to :latitude        }
-    it { should respond_to :longitude       }
+    it { should respond_to :cordinates      }
     it { should respond_to :requestor       }
     it { should respond_to :contact_details }
   end
@@ -15,8 +14,7 @@ describe DonationRequest do
 
     let(:valid_donation_request) { DonationRequest.new( :blood_group => "bpositive",
                                                         :quantity => 1000,
-                                                        :latitude => 18.5236,
-                                                        :longitude => 73.8478,
+                                                        :cordinates => [18.5236, 73.8478],
                                                         :requestor => "Jonny",
                                                         :contact_details => "9923299222") }
     context "is successful" do
@@ -63,7 +61,7 @@ describe DonationRequest do
 
       it "has invalid latitude" do
         donation_request_with_incorrect_latitude = valid_donation_request
-        donation_request_with_incorrect_latitude.latitude = 117.8753
+        donation_request_with_incorrect_latitude.cordinates = [117.8753, 127.353]
 
         donation_request_with_incorrect_latitude.should_not be_valid
         donation_request_with_incorrect_latitude.error_messages.should include("Incorrect or missing latitude")
@@ -71,7 +69,7 @@ describe DonationRequest do
 
       it "has missing latitude" do
         donation_request_with_missing_latitude = valid_donation_request
-        donation_request_with_missing_latitude.latitude = nil
+        donation_request_with_missing_latitude.cordinates = [nil, 127.353]
 
         donation_request_with_missing_latitude.should_not be_valid
         donation_request_with_missing_latitude.error_messages.should include("Incorrect or missing latitude")
@@ -79,7 +77,7 @@ describe DonationRequest do
 
       it "has invalid longitude" do
         donation_request_with_incorrect_longitude = valid_donation_request
-        donation_request_with_incorrect_longitude.longitude = 187.8753
+        donation_request_with_incorrect_longitude.cordinates = [19.352, 187.8753]
 
         donation_request_with_incorrect_longitude.should_not be_valid
         donation_request_with_incorrect_longitude.error_messages.should include("Incorrect or missing longitude")
@@ -87,7 +85,7 @@ describe DonationRequest do
 
       it "has invalid longitude" do
         donation_request_with_missing_longitude = valid_donation_request
-        donation_request_with_missing_longitude.longitude = nil
+        donation_request_with_missing_longitude.cordinates = [19.352, nil]
 
         donation_request_with_missing_longitude.should_not be_valid
         donation_request_with_missing_longitude.error_messages.should include("Incorrect or missing longitude")

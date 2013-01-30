@@ -19,8 +19,7 @@ class DonationRequest
 
   field :blood_group,   :type => String
   field :quantity, :type => Integer
-  field :latitude, :type => Float
-  field :longitude, :type => Float
+  field :cordinates, :type => Array
   field :requestor, :type => String
   field :contact_details, :type => String
 
@@ -48,11 +47,13 @@ class DonationRequest
   end
 
   def valid_latitude?
+    latitude = cordinates[0]
     !latitude.nil? && latitude.is_a?(Float) && 
       latitude >= MIN_LATITUDE_VALUE && latitude <= MAX_LATITUDE_VALUE
   end
 
   def valid_longitude?
+    longitude = cordinates[1]
     !longitude.nil? && longitude.is_a?(Float) && 
       longitude >= MIN_LONGITUDE_VALUE && longitude <= MAX_LONGITUDE_VALUE
   end
