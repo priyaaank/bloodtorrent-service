@@ -5,7 +5,7 @@ describe DonationRequest do
   context "attributes" do
     it { should respond_to :blood_group     }
     it { should respond_to :quantity        }
-    it { should respond_to :cordinates      }
+    it { should respond_to :coordinates      }
     it { should respond_to :requestor       }
     it { should respond_to :contact_details }
   end
@@ -28,7 +28,7 @@ describe DonationRequest do
 
     let(:valid_donation_request) { DonationRequest.new( :blood_group => "bpositive",
                                                         :quantity => 1000,
-                                                        :cordinates => [18.5236, 73.8478],
+                                                        :coordinates => [18.5236, 73.8478],
                                                         :requestor => "Jonny",
                                                         :contact_details => "9923299222") }
     context "is successful" do
@@ -124,6 +124,5 @@ describe DonationRequest do
     end
 
   end
-
 
 end
