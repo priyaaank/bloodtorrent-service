@@ -14,8 +14,7 @@ get '/donation/new' do
 
 
   request = DonationRequest.new(:blood_group => blood_group,
-                                :latitude => latitude,
-                                :longitude => longitude,
+                                :coordinates => [longitude,latitude],
                                 :quantity => quantity,
                                 :requestor => requestor_name,
                                 :contact_details => contact_details)

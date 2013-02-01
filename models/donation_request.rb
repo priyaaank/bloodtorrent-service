@@ -49,11 +49,11 @@ class DonationRequest
   end
 
   def valid_latitude?
-    valid_coordinate(cordinates[0], MIN_LATITUDE_VALUE, MAX_LATITUDE_VALUE)
+    valid_coordinate(coordinates[0], MIN_LATITUDE_VALUE, MAX_LATITUDE_VALUE)
   end
 
   def valid_longitude?
-    valid_coordinate(cordinates[1], MIN_LONGITUDE_VALUE, MAX_LONGITUDE_VALUE)
+    valid_coordinate(coordinates[1], MIN_LONGITUDE_VALUE, MAX_LONGITUDE_VALUE)
   end
 
   def valid_requestor?
