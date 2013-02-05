@@ -25,55 +25,27 @@ class DonationRequest
   field :requestor, :type => String
   field :contact_details, :type => String
 
-  attr_accessor :error_messages
+  validates_inclusion_of :blood_group , in: BLOOD_GROUPS::ALL, :message => "Incorrect or missing blood group"
+  validates_numericality_of :quantity, :greater_than => 0 , :message => "Incorrect or missing quantity"
+  validates_presence_of :contact_details, :message => "Incorrect or missing contact details"
+  validates_presence_of :requestor, :message => "Incorrect or missing requestor"
+  validate :validate_coordinates
 
-  def valid?
-    reset_error_messages
-    add_error("Incorrect or missing blood group") unless valid_blood_group?
-    add_error("Incorrect or missing quantity") unless valid_quantity?
-    add_error("Incorrect or missing latitude") unless valid_latitude?
-    add_error("Incorrect or missing longitude") unless valid_longitude?
-    add_error("Incorrect or missing requestor") unless valid_requestor?
-    add_error("Incorrect or missing contact details") unless valid_contact_details?
-    @error_messages.empty?
-  end
-
-  private
-
-  def valid_quantity?
-    !quantity.nil? && quantity.is_a?(Integer) && quantity > 0
-  end
-
-  def valid_blood_group?
-    !blood_group.nil? && BLOOD_GROUPS::ALL.include?(blood_group)
+  def validate_coordinates
+    errors.add(:latitude, "Incorrect or missing latitude") unless valid_latitude?
+    errors.add(:longitude, "Incorrect or missing longitude") unless valid_longitude?
   end
 
   def valid_latitude?
-    valid_coordinate(coordinates[0], MIN_LATITUDE_VALUE, MAX_LATITUDE_VALUE)
+    valid_coordinate?(coordinates[1], MIN_LATITUDE_VALUE, MAX_LATITUDE_VALUE)
   end
 
   def valid_longitude?
-    valid_coordinate(coordinates[1], MIN_LONGITUDE_VALUE, MAX_LONGITUDE_VALUE)
-  end
-
-  def valid_requestor?
-    !requestor.nil? && requestor.is_a?(String)
-  end
-
-  def valid_contact_details?
-    !contact_details.nil? && contact_details.is_a?(String)
-  end
-
-  def reset_error_messages
-    @error_messages = []
-  end
-
-  def add_error message
-    @error_messages << message
+    valid_coordinate?(coordinates[0], MIN_LONGITUDE_VALUE, MAX_LONGITUDE_VALUE)
   end
 
   private
-  def valid_coordinate(value, min, max)
+  def valid_coordinate?(value, min, max)
     !value.nil? && value.is_a?(Float) &&
         value >= min && value <= max
   end

@@ -6,8 +6,8 @@ Mongoid.load!("./config/mongoid.yml")
 
 get '/donation/new' do
   blood_group = params[:blood_group]
-  latitude = params[:latitude]
-  longitude = params[:longitude]
+  latitude = params[:latitude].to_f
+  longitude = params[:longitude].to_f
   quantity = params[:quantity]
   requestor_name = params[:requestor]
   contact_details = params[:contact_details]
