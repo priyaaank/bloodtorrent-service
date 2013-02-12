@@ -24,11 +24,14 @@ end
 
 get '/donation/search' do
   blood_group = params[:blood_group]
-  latitude = params[:latitude]
-  longitude = params[:longitude]
-  radius = params[:radius]
+  latitude = params[:latitude].to_f
+  longitude = params[:longitude].to_f
+  radius = params[:radius].to_f #km
 
-  requests = DonationRequest.where(:blood_group => blood_group)
+  current_location = [longitude, latitude]
+  requests = DonationRequest.where(:coordinates => { "$within" => {"$center" => [current_location, (radius.fdiv(111.138)) ] } } )
+                            .where(:blood_group => blood_group)
+
 
   content_type :json
   requests.to_json
