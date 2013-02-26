@@ -4,7 +4,7 @@ require 'mongoid'
 Dir["models/**/*.rb"].sort.each {|file| require_relative file}
 Mongoid.load!("./config/mongoid.yml")
 
-get '/donation/new' do
+post '/donation/new' do
   blood_group = params[:blood_group]
   latitude = params[:latitude].to_f
   longitude = params[:longitude].to_f

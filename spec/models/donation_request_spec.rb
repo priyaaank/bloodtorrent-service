@@ -24,7 +24,7 @@ describe DonationRequest do
 
   end
 
-  context "validation" do
+  context "validation on submission of new request" do
 
     let(:valid_donation_request) { DonationRequest.new(:blood_group => "bpositive",
                                                        :quantity => 1000,
