@@ -5,13 +5,13 @@ Dir["models/**/*.rb"].sort.each {|file| require_relative file}
 Mongoid.load!("./config/mongoid.yml")
 
 post '/donation/new' do
-  blood_group = params[:blood_group]
-  latitude = params[:latitude].to_f
-  longitude = params[:longitude].to_f
-  quantity = params[:quantity]
-  requestor_name = params[:requestor]
-  contact_details = params[:contact_details]
-
+  new_donation_request = JSON.parse(request.body.read)
+  blood_group = new_donation_request["blood_group"]
+  latitude = new_donation_request["latitude"].to_f
+  longitude = new_donation_request["longitude"].to_f
+  quantity = new_donation_request["quantity"]
+  requestor_name = new_donation_request["requestor"]
+  contact_details = new_donation_request["contact_details"]
 
   request = DonationRequest.new(:blood_group => blood_group,
                                 :coordinates => [longitude,latitude],
@@ -23,10 +23,10 @@ post '/donation/new' do
 end
 
 get '/donation/search' do
-  blood_group = params[:blood_group]
-  latitude = params[:latitude].to_f
-  longitude = params[:longitude].to_f
-  radius = params[:radius].to_f #km
+  blood_group = params["blood_group"]
+  latitude = params["latitude"].to_f
+  longitude = params["longitude"].to_f
+  radius = params["radius"].to_f #km
 
   current_location = [longitude, latitude]
   requests = DonationRequest.where(:coordinates => { "$within" => {"$center" => [current_location, (radius.fdiv(111.138)) ] } } )

@@ -45,6 +45,7 @@ class DonationRequest
   end
 
   private
+
   def valid_coordinate?(value, min, max)
     !value.nil? && value.is_a?(Float) &&
         value >= min && value <= max
