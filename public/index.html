@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1' name='viewport' />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
+    <link href='styles/web.css' rel='stylesheet' type='text/css' />
+    <script src='scripts/zepto.js' type='text/javascript'></script>
+    <script src='scripts/ICanHaz.js' type='text/javascript'></script>
+    <script src='scripts/underscore.js' type='text/javascript'></script>
+    <script src='scripts/bridge.js' type='text/javascript'></script>
+    <script src='scripts/init.js' type='text/javascript'></script>
+    <script src='scripts/calatrava.js' type='text/javascript'></script>
+    <script src='scripts/alert.web.js' type='text/javascript'></script>
+    <script src='scripts/preferences.web.js' type='text/javascript'></script>
+    <script src='scripts/web.config.js' type='text/javascript'></script>
+    <script src='scripts/shell.js' type='text/javascript'></script>
+    <script src='scripts/shell.js' type='text/javascript'></script>
+    <script src='scripts/page.captureLocation.js' type='text/javascript'></script>
+    <script src='scripts/page.donationRequestListing.js' type='text/javascript'></script>
+    <script src='scripts/page.newDonationRequest.js' type='text/javascript'></script>
+    <script src='scripts/page.menu.js' type='text/javascript'></script>
+    <script src='scripts/page.userSetup.js' type='text/javascript'></script>
+    <script src='scripts/pageHelper.js' type='text/javascript'></script>
+    <script src='scripts/alert.js' type='text/javascript'></script>
+    <script src='scripts/perferences.js' type='text/javascript'></script>
+    <script src='scripts/userLocation.js' type='text/javascript'></script>
+    <script src='scripts/controller.donationRequest.js' type='text/javascript'></script>
+    <script src='scripts/init.donationRequest.js' type='text/javascript'></script>
+    <script src='scripts/model.donationRequest.js' type='text/javascript'></script>
+    <script src='scripts/repository.donationRequest.js' type='text/javascript'></script>
+    <script src='scripts/init.launcher.js' type='text/javascript'></script>
+    <script src='scripts/controller.menu.js' type='text/javascript'></script>
+    <script src='scripts/init.menu.js' type='text/javascript'></script>
+    <script src='scripts/controller.settings.js' type='text/javascript'></script>
+    <script src='scripts/init.settings.js' type='text/javascript'></script>
+    <script src='scripts/env.js' type='text/javascript'></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDkjTIGExixerD1kEHqyip8UR5L3E4L6R4&amp;sensor=false' type='text/javascript'></script>
+  </head>
+  <body>
+    <header>
+      <a class='menu-buttons float-right' href='#' id='settings'>
+        <i class='icon icon-settings'></i>
+      </a>
+      <div class='page-title'>
+        <div class='title'>BloodTorrent</div>
+      </div>
+    </header>
+    <div class='container' id='app_container'>
+      <div class='page' id='captureLocation'>
+        <div class='map-box' id='mapContainer'></div>
+        <div class='pure-button pure-button-primary pure-button-primary-menu-custom margin-top' id='selectLocation' name='selectLocation'>Select Location</div>
+      </div>
+      <div class='page' id='donationRequestListing'>
+        <script id='donationListingTmpl' type='text/html'>
+          <ul class='list'>
+            {{#donations}}
+            <li class='request'>
+              <div class='pure-g'>
+                <div class='pure-u-1-4'>
+                  <div class='avatar'>
+                    <i class='icon icon-users-2'></i>
+                  </div>
+                </div>
+                <div class='pure-u-1-2'>
+                  <div class='title name'>{{requestor}}</div>
+                  <div class='subtitle address'>
+                    <span>{{contact_details}}</span>
+                    <a class='locator' href='#'>
+                      <i class='icon icon-marker'></i>
+                    </a>
+                  </div>
+                  <div class='highlight blood-details'>
+                    <strong>{{quantity}}</strong>
+                    <span>Units</span>
+                    <span>of</span>
+                    <strong>{{blood_group}}</strong>
+                  </div>
+                </div>
+                <div class='pure-u-1-4'></div>
+              </div>
+            </li>
+            {{/donations}}
+          </ul>
+        </script>
+        <script id='noDonationRecordsBannerTmpl' type='text/html'>
+          <h4 class='list-title text-center' id='noDonationRecordsMessage'>
+            No donation records found
+          </h4>
+        </script>
+        <h4 class='list-title text-center' id='loadingBanner'>
+          Fetching list based on you location...
+        </h4>
+        <div id='donationListing'></div>
+      </div>
+      <div class='page' id='newDonationRequest'>
+  <form class='pure-form pure-form-stacked'>
+    <fieldset>
+      <legend class='page-header-center'>New Request</legend>
+      <div id='newRequest'>
+        <div class='pure-group margin-top'>
+          <select class='pure-input-1 select-box-large' id='bloodGroup' name='bloodgroup'>
+            <option value='choose'>Select Blood Group</option>
+            <option value='a+'>A Positive</option>
+            <option value='b+'>B Positive</option>
+            <option value='ab+'>AB Positive</option>
+            <option value='o+'>O Positive</option>
+            <option value='a-'>A Negative</option>
+            <option value='b-'>B Negative</option>
+            <option value='ab-'>AB Negative</option>
+            <option value='o-'>O Negative</option>
+          </select>
+        </div>
+        <div class='pure-group margin-top'>
+          <input class='pure-input-1' id='quantity' name='quantity' placeholder='Quantity' type='text' />
+        </div>
+        <div class='pure-group margin-top'>
+          <textarea class='pure-input-1 multiline_string' id='contactDetails' name='contact_details' placeholder='Contact Details'></textarea>
+        </div>
+        <div class='field'>
+          <label class='span150 vertical-top field-label'></label>
+          <div class='field_value span150 text-center'>
+            <img class='image-button' id='location' src='../images/place.png' />
+          </div>
+        </div>
+        <div class='action'>
+          <div class='pure-button-primary-center-custom pure-button pure-button-primary pure-button-large' id='submitDonationRequest' name='submitDonationRequest'>
+            Create
+          </div>
+        </div>
+        <div id='goHome'></div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+      <div class='page' id='menu'>
+        <div id='setupData'>
+          <form class='pure-form pure-form-stacked'>
+            <fieldset>
+              <legend class='page-header-center'>Menu</legend>
+              <div class='pure-button pure-button-primary pure-button-primary-menu-custom' id='donationRequests' name='donationRequests'>All Requests</div>
+              <div class='pure-button pure-button-primary pure-button-primary-menu-custom' id='newDonationRequest' name='newDonationRequest'>New Request</div>
+              <div class='pure-button pure-button-primary pure-button-primary-menu-custom' id='settings' name='settings'>Settings</div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <div class='page' id='userSetup'>
+  <div id='setupData'>
+    <form class='pure-form pure-form-stacked'>
+      <fieldset>
+        <legend class='page-header-center'>User Settings</legend>
+        <div class='pure-group margin-top'>
+          <input class='pure-input-1' id='userName' name='userName' placeholder='Display name' type='text' />
+        </div>
+        <div class='pure-group margin-top'>
+          <select class='pure-input-1 select-box-large' id='bloodGroup'>
+            <option value='choose'>Select Blood Group</option>
+            <option value='apositive'>A Positive</option>
+            <option value='bpositive'>B Positive</option>
+            <option value='abpositive'>AB Positive</option>
+            <option value='opositive'>O Positive</option>
+            <option value='anegative'>A Negative</option>
+            <option value='bnegative'>B Negative</option>
+            <option value='abnegative'>AB Negative</option>
+            <option value='onegative'>O Negative</option>
+          </select>
+        </div>
+        <div class='pure-group margin-top'>
+          <select class='pure-input-1 select-box-large' id='notificationRadius'>
+            <option value='choose'>Donation lookup radius (Kms)</option>
+          </select>
+        </div>
+        <label>&nbsp;</label>
+        <div class='pure-button pure-button-primary pure-button-large pure-button-primary-center-custom' id='saveUserPreferences' name='saveUserPreferences'>Save</div>
+        <div id='transitionNext'></div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+    </div>
+  </body>
+  <script type='text/javascript'>
+    //<![CDATA[
+      $(document).ready(function(){
+        bloodtorrent.launcher.launch();
+      });
+    //]]>
+  </script>
+</html>

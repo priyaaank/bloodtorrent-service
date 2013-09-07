@@ -1,0 +1,167 @@
+/**
+ *  All global variables should go here.
+ */
+/**
+ *  All mixins should go here.
+ */
+@font-face {
+  font-family: "Roboto Light";
+  src: url("../images/Roboto-Light.ttf"); }
+
+@font-face {
+  font-family: "Roboto Thin";
+  src: url("../images/Roboto-Thin.ttf"); }
+
+@font-face {
+  font-family: "Roboto Condensed";
+  src: url("../images/Roboto-Condensed.ttf"); }
+
+@font-face {
+  font-family: "Roboto Regular";
+  src: url("../images/Roboto-Regular.ttf"); }
+
+@font-face {
+  font-family: 'colaborate-light';
+  src: url("../images/ColabLig-webfont.eot");
+  src: url("../images/ColabLig-webfont.eot?#iefix") format("embedded-opentype"), url("../images/ColabLig-webfont.woff") format("woff"), url("../images/ColabLig-webfont.ttf") format("truetype"), url("../images/ColabLig-webfont.svg#colaboratelightregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'colaborate-medium';
+  src: url("../images/ColabMed-webfont.eot");
+  src: url("../images/ColabMed-webfont.eot?#iefix") format("embedded-opentype"), url("../images/ColabMed-webfont.woff") format("woff"), url("../images/ColabMed-webfont.ttf") format("truetype"), url("../images/ColabMed-webfont.svg#colaborate-mediumregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'colaborate-regular';
+  src: url("../images/ColabReg-webfont.eot");
+  src: url("../images/ColabReg-webfont.eot?#iefix") format("embedded-opentype"), url("../images/ColabReg-webfont.woff") format("woff"), url("../images/ColabReg-webfont.ttf") format("truetype"), url("../images/ColabReg-webfont.svg#colaborate-regularregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'colaborate-thin';
+  src: url("../images/ColabThi-webfont.eot");
+  src: url("../images/ColabThi-webfont.eot?#iefix") format("embedded-opentype"), url("../images/ColabThi-webfont.woff") format("woff"), url("../images/ColabThi-webfont.ttf") format("truetype"), url("../images/ColabThi-webfont.svg#colaborate-thinregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+html {
+  height: 100%;
+  background: #eaeaea; }
+  html body {
+    margin: auto auto;
+    padding: 0;
+    max-width: 640px; }
+    html body .page {
+      padding: 16px; }
+    html body ul {
+      padding: 0;
+      margin: 0; }
+      html body ul li {
+        list-style: none; }
+    html body a {
+      text-decoration: none; }
+    html body .hidden {
+      display: none !important; }
+    html body .text-center {
+      text-align: center !important; }
+    html body .text-left {
+      text-align: left !important; }
+    html body .text-right {
+      text-align: right !important; }
+    html body .center-aligned {
+      margin: 0 auto !important; }
+    html body .float-left {
+      float: left; }
+    html body .float-right {
+      float: right; }
+    html body .icon-blip {
+      background: url("/images/icons.png");
+      background-position: 0px -115px; }
+    html body .icon-slider {
+      background: url("/images/icons.png") no-repeat;
+      background-position: 3px 0px; }
+    html body .icon-notification {
+      background: url("/images/icons.png") no-repeat;
+      background-position: -2px -58px; }
+    html body .icon-new-request {
+      background: url("/images/icons.png") no-repeat;
+      background-position: -3px -225px; }
+    html body .icon-back {
+      background: url("/images/icons.png") no-repeat;
+      background-position: 0px -335px; }
+    html body .icon-app {
+      background: url("/images/icons.png") no-repeat;
+      background-position: 0px -395px; }
+    html body .vertical-top {
+      vertical-align: top; }
+    html body .span100 {
+      display: inline-block;
+      width: 100px; }
+    html body .span150 {
+      display: inline-block;
+      width: 150px; }
+    html body .span200 {
+      display: inline-block;
+      width: 200px; }
+    html body .span250 {
+      display: inline-block;
+      width: 250px; }
+    html body .clearfix:after {
+      clear: both;
+      content: " ";
+      height: 0;
+      display: block; }
+    html body .clearfix:before {
+      content: " ";
+      clear: both;
+      height: 0;
+      display: block; }
+    html body .page ul.list {
+      display: block;
+      overflow: hidden;
+      border: solid 1px rgba(0, 0, 0, 0.1);
+      border-radius: 10px; }
+      html body .page ul.list li {
+        background: white;
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlNWU1ZTUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+        background: -moz-linear-gradient(top, white 0%, #e5e5e5 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #e5e5e5));
+        background: -webkit-linear-gradient(top, white 0%, #e5e5e5 100%);
+        background: -o-linear-gradient(top, white 0%, #e5e5e5 100%);
+        background: -ms-linear-gradient(top, white 0%, #e5e5e5 100%);
+        background: linear-gradient(to bottom, white 0%, #e5e5e5 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 );
+        padding: 10px;
+        color: rgba(0, 0, 0, 0.3); }
+        html body .page ul.list li .avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 60px;
+          border: solid 2px rgba(0, 0, 0, 0.3);
+          overflow: hidden; }
+          html body .page ul.list li .avatar i.icon {
+            font-size: 60px;
+            color: rgba(0, 0, 0, 0.3); }
+        html body .page ul.list li .title {
+          font-size: 24px;
+          text-transform: uppercase;
+          font-family: "colaborate-light";
+          color: rgba(0, 0, 0, 0.8); }
+        html body .page ul.list li .subtitle {
+          font-size: 16px;
+          text-transform: capitalize;
+          font-family: "colaborate-thin";
+          color: rgba(0, 0, 0, 0.6); }
+          html body .page ul.list li .subtitle a.locator .icon {
+            font-size: 16px;
+            color: rgba(221, 0, 0, 0.3); }
+          html body .page ul.list li .subtitle a.locator:hover .icon {
+            color: #dd0000; }
+        html body .page ul.list li .highlight {
+          font-size: 18px;
+          font-family: "colaborate-regular";
+          color: rgba(0, 0, 0, 0.6); }

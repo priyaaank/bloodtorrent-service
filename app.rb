@@ -4,6 +4,8 @@ require 'mongoid'
 Dir["models/**/*.rb"].sort.each {|file| require_relative file}
 Mongoid.load!("./config/mongoid.yml")
 
+set :public_folder, 'public'
+
 post '/donation/new' do
   new_donation_request = JSON.parse(request.body.read)
   blood_group = new_donation_request["blood_group"]
@@ -38,5 +40,5 @@ get '/donation/search' do
 end
 
 get '/' do
-  "Dragons be here"
+  redirect '/index.html'
 end

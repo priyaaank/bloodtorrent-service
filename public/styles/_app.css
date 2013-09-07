@@ -1,0 +1,41 @@
+/**
+ *  All global variables should go here.
+ */
+/**
+ *  All mixins should go here.
+ */
+body {
+  color: white; }
+  body .drawer-menu {
+    border: 1px solid white;
+    position: absolute;
+    top: 2px;
+    bottom: 0;
+    background: white;
+    z-index: 10; }
+    body .drawer-menu .menu-head {
+      background-color: #ecf0f1;
+      height: 50px;
+      width: 240px; }
+      body .drawer-menu .menu-head a {
+        display: block; }
+        body .drawer-menu .menu-head a .menu-title {
+          color: white;
+          height: 100%;
+          line-height: 50px;
+          display: inline-block; }
+    body .drawer-menu ul.menu-body {
+      border-left: 1px solid white;
+      border-right: 1px solid white; }
+      body .drawer-menu ul.menu-body li {
+        border-top: 2px solid;
+        padding: 5px; }
+        body .drawer-menu ul.menu-body li:last-child {
+          border-bottom: 2px solid; }
+        body .drawer-menu ul.menu-body li a {
+          display: block; }
+          body .drawer-menu ul.menu-body li a .item-detail {
+            color: #29B5E5;
+            padding-left: 5px;
+            height: 50px;
+            line-height: 50px; }
