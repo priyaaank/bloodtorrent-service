@@ -7,7 +7,7 @@
   bloodtorrent.environment = function() {
     return {
       sessionTimeout: 600,
-      apiEndpoint: "/api"
+      apiEndpoint: ""
     };
   };
 
