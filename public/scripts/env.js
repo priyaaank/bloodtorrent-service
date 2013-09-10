@@ -7,7 +7,7 @@
   if (_.isUndefined(bloodtorrent.environment)) {
     bloodtorrent.environment = function() {
       return {
-        apiEndpoint: ""
+        apiEndpoint: "http://bt-service.herokuapp.com/"
       };
     };
   }
